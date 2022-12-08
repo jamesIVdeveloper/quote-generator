@@ -5,18 +5,18 @@ const twitterBtn = document.getElementById("twitter");
 const newQuoteBtn = document.getElementById("new-quote");
 const loader = document.getElementById("loader");
 
-function loading() {
+function showLoadingSpinner() {
   loader.hidden = false;
   quoteContainer.hidden = true;
 }
 
-function complete() {
+function removeLoadingSpinner() {
   quoteContainer.hidden = false;
   loader.hidden = true;
 }
 
 function newQuote() {
-  loading();
+  showLoadingSpinner();
   const quote = apiQuote;
 
   if (!quote.author) {
@@ -32,12 +32,12 @@ function newQuote() {
   }
 
   quoteText.textContent = quote.content;
-  complete();
+  removeLoadingSpinner();
 }
 
 // fetch quote
 async function getQuote() {
-  loading();
+  showLoadingSpinner();
   const apiUrl = "https://api.quotable.io/random";
 
   try {
